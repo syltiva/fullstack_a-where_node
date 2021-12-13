@@ -17,7 +17,8 @@ app.use(cors());
 app.use(express.json())
 
 // routes
-app.use("/api/auth", require("./routes/auth.js"));
+app.use("/api/auth", require("./routes/auth"));
+
 
 // port and server listening
 const port = process.env.PORT

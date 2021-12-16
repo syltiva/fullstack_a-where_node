@@ -2,6 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const fileUpload = require('express-fileupload')
 
 const app = express();
 
@@ -15,9 +16,15 @@ mongoose.connect(process.env.MONGODB_URL)
 // middlewares
 app.use(cors());
 app.use(express.json())
+app.use(fileUpload({
+    useTempFiles: true,
+    tempFileDir: '/tmp/',
+    createParentPath: true
+}))
 
 // routes
 app.use("/api/auth", require("./routes/auth"));
+app.use('/api/posts', require("./routes/post"));
 
 
 // port and server listening

@@ -5,6 +5,8 @@ const cloudinary = require('cloudinary').v2
 const getAllPosts = async (req, res) => {
     const posts = await Post.find()
     .populate("author", "name")
+    .populate("latitude")
+    .populate("longitude")
     try {
         if (posts.length === 0) {
             return res.status(400).json({message: "No posts found"})

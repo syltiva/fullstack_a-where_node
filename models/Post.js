@@ -12,17 +12,13 @@ const PostSchema = Schema({
         type: Date,
         required: true
     },
-    address: {
-        type: String,
-        required: [true, "Address required"],
-    },
     latitude: {
         type: Number,
-        required: [true, "Enter latitude of incident address."]
+        required: true
     },
     longitude: {
         type: Number, 
-        required: [true, "Enter longitude of incident address."]
+        required: true
     },
     severity: {
         type: String,

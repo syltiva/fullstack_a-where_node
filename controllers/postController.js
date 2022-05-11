@@ -1,5 +1,5 @@
-const Post = require('../models/Post');
 const cloudinary = require('cloudinary').v2
+const Post = require('../models/Post');
 
 
 const getAllPosts = async (req, res) => {
@@ -29,6 +29,7 @@ const getSinglePost = async (req, res) => {
 };
 
 const createPost = async (req, res) => {
+    // return res.json(req.body)
     const postToCreate = await Post.create(req.body); 
     try {
         return res.status(201).json(postToCreate);

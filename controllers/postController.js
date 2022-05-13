@@ -42,9 +42,10 @@ const createPost = async (req, res) => {
 const imagePost = async (req, res) => {
     const { id } = req.params;
     const imageToUpdate = await Post.findById(id);
-
+    console.log("imageToUpdate", imageToUpdate)
     //checks for pre-existing images
     if (imageToUpdate.image) {
+        console.log("imageToUpdate.image", imageToUpdate.image)
         let array = imageToUpdate.image.split('/');
         let fileName = array[array.length-1];
         const [public_id] = fileName.split('.');
@@ -52,6 +53,7 @@ const imagePost = async (req, res) => {
     } 
 
     const { tempFilePath } = req.files.image;
+    console.log(tempFilePath)
     const { secure_url } = await cloudinary.uploader.upload(tempFilePath);
     imageToUpdate.image = secure_url;
     await imageToUpdate.save();
@@ -61,6 +63,13 @@ const imagePost = async (req, res) => {
         return res.status(500).json({message: "There was an error uploading the image."})
     }
 }
+
+// UPDATE IMAGE 
+// const imageUpdate = async (req, res) => {
+//     const {id} = req.params;
+ 
+// }
+
 
 const updatePost = async (req, res) => {
     const { id } = req.params;
